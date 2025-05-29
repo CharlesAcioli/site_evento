@@ -6,8 +6,7 @@ $db = 'site_eventos';
 
 $pdo = new PDO("mysql:host=$host;dbname=$db;", $user, $pass,);
 
-// $pdo->exec("CREATE DATABASE IF NOT EXISTS site_eventos");
-// $pdo->exec("USE site_eventos;");
+$pdo->exec("CREATE DATABASE IF NOT EXISTS site_eventos");
 
 // Usuários
 $pdo->exec("CREATE TABLE IF NOT EXISTS users (

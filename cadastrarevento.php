@@ -1,8 +1,7 @@
 <?php
 session_start();
-include '../config/db.php';
+include_once 'config.php';
 
-// Verifica se usuário está logado e é organizador
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'organizador') {
     die('Acesso negado. Apenas organizadores podem cadastrar eventos.');
 }
@@ -33,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="cadastarevento.css">
+    <link rel="stylesheet" href="cadastrarevento.css">
     <title>Cadastrar Novo Evento</title>
 </head>
 <body>
