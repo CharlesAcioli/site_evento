@@ -39,6 +39,7 @@ $inscritos = $stmt->fetchAll();
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="inscritos.css">
     <title>Inscritos no evento: <?= htmlspecialchars($evento['titulo']) ?></title>
 </head>
 <body>
