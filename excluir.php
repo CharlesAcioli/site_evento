@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+include_once 'config.php';
 
 // Verifica se usuário está logado e é organizador
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'organizador') {
@@ -31,8 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Opcional: apagar dados relacionados (comentários, inscrições, curtidas) — cuidado com integridade
 
-    header('Location: ../index.php');
+    header('Location: organizador.php');
     exit;
 } else {
     die('Acesso inválido.');
 }
+
+?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+include 'config.php';
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die('ID do evento inválido.');
@@ -73,7 +73,7 @@ $comentarios = $stmt->fetchAll();
 <hr>
 
 <?php if ($usuario_id): ?>
-    <form action="interacoes.php" method="post" style="display:inline;">
+    <form action="interation.php" method="post" style="display:inline;">
         <input type="hidden" name="evento_id" value="<?= $evento_id ?>">
         <input type="hidden" name="acao" value="curtir">
         <button type="submit" <?= $curtido ? 'disabled' : '' ?>>
@@ -81,7 +81,7 @@ $comentarios = $stmt->fetchAll();
         </button>
     </form>
 
-    <form action="interacoes.php" method="post" style="display:inline; margin-left: 10px;">
+    <form action="interation.php" method="post" style="display:inline; margin-left: 10px;">
         <input type="hidden" name="evento_id" value="<?= $evento_id ?>">
         <input type="hidden" name="acao" value="inscrever">
         <button type="submit" <?= $inscrito ? 'disabled' : '' ?>>
@@ -92,14 +92,14 @@ $comentarios = $stmt->fetchAll();
     <hr>
 
     <h3>Comentar</h3>
-    <form action="interacoes.php" method="post">
+    <form action="interation.php" method="post">
         <input type="hidden" name="evento_id" value="<?= $evento_id ?>">
         <input type="hidden" name="acao" value="comentar">
         <textarea name="comentario" rows="4" cols="50" required></textarea><br>
         <button type="submit">Enviar comentário</button>
     </form>
 <?php else: ?>
-    <p><a href="../login.php">Faça login</a> para interagir com o evento.</p>
+    <p><a href="login.php">Faça login</a> para interagir com o evento.</p>
 <?php endif; ?>
 
 <hr>
@@ -115,7 +115,7 @@ $comentarios = $stmt->fetchAll();
     <?php endforeach; ?>
 <?php endif; ?>
 
-<p><a href="../index.php">Voltar para eventos</a></p>
+<p><a href="index.php">Voltar para eventos</a></p>
 
 </body>
 </html>

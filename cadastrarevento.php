@@ -18,13 +18,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = "Preencha todos os campos.";
     } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data_evento)) {
         $erro = "Data inválida. Use o formato YYYY-MM-DD.";
-    } else {
-        $stmt = $pdo->prepare("INSERT INTO eventos (titulo, descricao, data_evento, local, organizador_id) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$titulo, $descricao, $data_evento, $local, $organizador_id]);
+        // preg_match()->verifica se uma string casa com uma expressão regular (regex).
+        // Retorna 1 se casar, 0 se não casar e false se houver erro na regex.
 
-        header('Location: ../index.php');
-        exit;
-    }
+        // Exemplo REGEX:
+        // ^ Início da string
+        // \d{4} Exatamente 4 dígitos (ex: 2025)
+        // - Um hífen literal (-)
+        // \d{2} Exatamente 2 dígitos (ex: 05)
+        // - Outro hífen
+        // \d{2} Mais 2 dígitos (ex: 30)
+        // $ Final da string
+    } else {
+        $imagem_nome = null;
+
+        // Verifica se há imagem enviada
+        if (!empty($_FILES['imagem']['name'])) {
+            $uploadDir = 'uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            $nomeOriginal = $_FILES['imagem']['name'];
+            $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION);
+            $imagem_nome = uniqid('evento_', true) . '.' . $extensao;
+            $caminhoCompleto = $uploadDir . $imagem_nome;
+
+            if (!move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto)) {
+                $erro = "Falha ao enviar a imagem.";
+            }
+        }
+
+        if (!$erro) {
+            $stmt = $pdo->prepare("INSERT INTO eventos (titulo, descricao, data_evento, local, organizador_id, imagem) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$titulo, $descricao, $data_evento, $local, $organizador_id, $imagem_nome]);
+
+            header('Location: organizador.php');
+            exit;
+        }
 }
 ?>
 
@@ -37,12 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h2>Cadastrar Novo Evento</h2>
-
     <?php if ($erro): ?>
         <p style="color:red"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
-
-    <form method="post" action="novo.php">
+    <form method="post" action="cadastrarevento.php" enctype="multipart/form-data">
         <label>Título:</label><br>
         <input type="text" name="titulo" required><br><br>
 
@@ -55,9 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Local:</label><br>
         <input type="text" name="local" required><br><br>
 
+        <label>Adicionar Imagem</label>
+        <input type="file" name="imagem" accept="image/*">
+
         <button type="submit">Cadastrar Evento</button>
     </form>
-
-    <p><a href="../index.php">Voltar para eventos</a></p>
+    <p><a href="organizador.php">Voltar para eventos</a></p>
 </body>
 </html>

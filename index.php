@@ -52,7 +52,7 @@ $eventos = $stmt->fetchAll();
                 Data: <?= date('d/m/Y', strtotime($evento['data_evento'])) ?><br>
                 Local: <?= htmlspecialchars($evento['local']) ?><br>
                 Organizador: <?= htmlspecialchars($evento['organizador']) ?><br>
-                <a href="eventos/detalhe.php?id=<?= $evento['id'] ?>">Ver detalhes</a>
+                <a href="details.php?id=<?= $evento['id'] ?>">Ver detalhes</a>
             </li>
             <hr>
         <?php endforeach; ?>

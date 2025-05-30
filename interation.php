@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+include 'config.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     die('Você precisa estar logado para interagir.');
@@ -42,5 +42,5 @@ switch ($acao) {
         break;
 }
 
-header("Location: detalhe.php?id=$evento_id");
+header("Location: details.php?id=$evento_id");
 exit;

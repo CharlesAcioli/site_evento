@@ -2,9 +2,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f6f8;
   color: #333;
-  padding: 20px;
-
+  padding: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -12,7 +12,7 @@ body {
 
 form {
   background-color: #fff;
-  padding: 30px 40px;
+  padding: 20px 40px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 100%;
@@ -29,7 +29,7 @@ h2 {
 label {
   display: block;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 3px;
   color: #444;
 }
 
@@ -37,12 +37,12 @@ input[type="text"],
 input[type="date"],
 textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 5px 12px;
   border: 1.5px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   transition: border-color 0.3s ease;
   resize: vertical;
 }

@@ -63,6 +63,8 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS comentarios (
     FOREIGN KEY (usuario_id) REFERENCES users(id)
 ) ENGINE=InnoDB;");
 
+$pdo->exec("ALTER TABLE eventos ADD COLUMN imagem VARCHAR(255) NULL")
+
 // Motivo do uso ENGINE=InnoDB:
 // Garantir que as referências entre as tabelas por uso das chaves FOREIGN KEY
 // não possa inserir valores inválidos, nem deletar o registro PAI sem cuidar dos registros FILHOS.
