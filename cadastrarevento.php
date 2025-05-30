@@ -30,32 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // \d{2} Mais 2 dígitos (ex: 30)
         // $ Final da string
     } else {
-        $imagem_nome = null;
+        $stmt = $pdo->prepare("INSERT INTO eventos (titulo, descricao, data_evento, local, organizador_id) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$titulo, $descricao, $data_evento, $local, $organizador_id]);
 
-        // Verifica se há imagem enviada
-        if (!empty($_FILES['imagem']['name'])) {
-            $uploadDir = 'uploads/';
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-
-            $nomeOriginal = $_FILES['imagem']['name'];
-            $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION);
-            $imagem_nome = uniqid('evento_', true) . '.' . $extensao;
-            $caminhoCompleto = $uploadDir . $imagem_nome;
-
-            if (!move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto)) {
-                $erro = "Falha ao enviar a imagem.";
-            }
-        }
-
-        if (!$erro) {
-            $stmt = $pdo->prepare("INSERT INTO eventos (titulo, descricao, data_evento, local, organizador_id, imagem) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$titulo, $descricao, $data_evento, $local, $organizador_id, $imagem_nome]);
-
-            header('Location: organizador.php');
-            exit;
-        }
+        header('Location: organizador.php');
+        exit;
+    }
 }
 ?>
 
@@ -71,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($erro): ?>
         <p style="color:red"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
-    <form method="post" action="cadastrarevento.php" enctype="multipart/form-data">
+    <form method="post" action="cadastrarevento.php">
         <label>Título:</label><br>
         <input type="text" name="titulo" required><br><br>
 
@@ -83,9 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>Local:</label><br>
         <input type="text" name="local" required><br><br>
-
-        <label>Adicionar Imagem</label>
-        <input type="file" name="imagem" accept="image/*">
 
         <button type="submit">Cadastrar Evento</button>
     </form>
