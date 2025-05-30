@@ -63,6 +63,10 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS comentarios (
     FOREIGN KEY (usuario_id) REFERENCES users(id)
 ) ENGINE=InnoDB;");
 
+
+// Explorei um tipo dado diferente ENUM para fazer a escolha usando a TAG Select e option.
+// Uso de ENUM quando temos setores definidos e que não variam. O que irá mudar serão os dados salvos.
+
 // Motivo do uso ENGINE=InnoDB:
 // Garantir que as referências entre as tabelas por uso das chaves FOREIGN KEY
 // não possa inserir valores inválidos, nem deletar o registro PAI sem cuidar dos registros FILHOS.
