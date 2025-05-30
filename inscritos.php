@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+include 'config.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'organizador') {
     die('Acesso negado.');
@@ -45,7 +45,7 @@ $inscritos = $stmt->fetchAll();
 
 <h1>Inscritos no evento: <?= htmlspecialchars($evento['titulo']) ?></h1>
 
-<p><a href="painel.php">Voltar ao painel</a></p>
+<p><a href="organizador.php">Voltar ao painel</a></p>
 
 <?php if (count($inscritos) === 0): ?>
     <p>Não há inscritos neste evento.</p>

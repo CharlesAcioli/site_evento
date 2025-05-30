@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+include 'config.php';
 
 // Verifica se usuário está logado e é organizador
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'organizador') {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $stmt->execute([$titulo, $descricao, $data_evento, $local, $evento_id, $usuario_id]);
 
-        header('Location: ../index.php');
+        header('Location: index.php');
         exit;
     }
 }
@@ -80,9 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <form method="post" action="excluir.php" onsubmit="return confirm('Confirma exclusão do evento?');">
       <input type="hidden" name="evento_id" value="<?= $evento['id'] ?>">
-      <button type="submit" style="color:red;">Excluir Evento</button>
+      <button type="submit" style="color:yellow;">Excluir Evento</button>
     </form>
 
-    <p><a href="../index.php">Voltar para eventos</a></p>
+    <p><a href="index.php">Voltar para eventos</a></p>
 </body>
 </html>
