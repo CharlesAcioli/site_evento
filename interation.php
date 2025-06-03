@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include_once 'config.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     die('Você precisa estar logado para interagir.');

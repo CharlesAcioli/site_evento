@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include_once 'config.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'organizador') {
     die('Acesso negado.');

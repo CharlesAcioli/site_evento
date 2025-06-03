@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include_once 'config.php';
 
 // Buscar eventos do banco ordenados pela data
 $stmt = $pdo->query("SELECT e.id, e.titulo, e.data_evento, e.local, u.nome AS organizador 

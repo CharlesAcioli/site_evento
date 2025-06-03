@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include_once 'config.php';
 
 $erro = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
