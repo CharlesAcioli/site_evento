@@ -75,17 +75,19 @@ $comentarios = $stmt->fetchAll();
 <?php if ($usuario_id): ?>
     <form action="interation.php" method="post" style="display:inline;">
         <input type="hidden" name="evento_id" value="<?= $evento_id ?>">
-        <input type="hidden" name="acao" value="curtir">
-        <button type="submit" <?= $curtido ? 'disabled' : '' ?>>
+        <input type="hidden" name="acao" value="<?= $curtido ? 'descurtir' : 'curtir' ?>">
+        <!-- Caso queira desativar o botão para descurtir, basta inserir <?= $curtido ? 'disabled' : '' ?> ao button -->
+        <button type="submit">
             <?= $curtido ? 'Curtido' : 'Curtir' ?>
         </button>
     </form>
 
     <form action="interation.php" method="post" style="display:inline; margin-left: 10px;">
         <input type="hidden" name="evento_id" value="<?= $evento_id ?>">
-        <input type="hidden" name="acao" value="inscrever">
-        <button type="submit" <?= $inscrito ? 'disabled' : '' ?>>
-            <?= $inscrito ? 'Inscrito' : 'Inscrever-se' ?>
+        <input type="hidden" name="acao" value="<?= $inscrito ? 'cancelar_inscricao' : 'inscrever' ?>">
+        <!-- Caso queira desativar o botão de inscrição inserir <?= $inscrito ? 'disabled' : '' ?> ao button -->
+        <button type="submit">
+            <?= $inscrito ? 'Cancelar Inscrição' : 'Inscrever-se' ?>
         </button>
     </form>
 
