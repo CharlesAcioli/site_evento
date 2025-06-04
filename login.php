@@ -3,6 +3,7 @@ session_start();
 include_once 'config.php';
 
 $erro = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $senha = $_POST['senha'];
