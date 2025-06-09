@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'config.php';
+require_once 'config.php';
 
 // Verifica se usuário está logado e é organizador
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'organizador') {
