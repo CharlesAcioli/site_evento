@@ -31,9 +31,6 @@ $eventos = $stmt->fetchAll();
 
 <?php if (isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] === 'organizador'): ?>
     <p><a href="cadastrarevento.php">Cadastrar Novo Evento</a></p>
-<?php endif; ?>
-
-<?php if (isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] === 'organizador'): ?>
     <p><a href="organizador.php">Painel do Organizador</a></p>
 <?php endif; ?>
 
