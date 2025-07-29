@@ -3,10 +3,11 @@ session_start();
 require_once 'config.php';
 
 // Buscar eventos do banco ordenados pela data
-$stmt = $pdo->query("SELECT e.id, e.titulo, e.data_evento, e.local, u.nome AS organizador 
+$stmt = $pdo->prepare("SELECT e.id, e.titulo, e.data_evento, e.local, u.nome AS organizador 
                      FROM eventos e 
                      JOIN users u ON e.organizador_id = u.id
                      ORDER BY e.data_evento ASC");
+$stmt->execute();
 $eventos = $stmt->fetchAll();
 ?>
 
