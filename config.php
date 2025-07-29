@@ -4,7 +4,7 @@ $user = 'root';
 $pass = '';
 $db = 'site_eventos';
 
-$pdo = new PDO("mysql:host=$host;dbname=$db;", $user, $pass,);
+$pdo = new PDO("mysql:host=$host;dbname=$db;", $user, $pass);
 
 $pdo->exec("CREATE DATABASE IF NOT EXISTS site_eventos");
 
